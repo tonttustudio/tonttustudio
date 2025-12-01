@@ -1,917 +1,443 @@
 <!DOCTYPE html>
-<!-- =========================================================
-     ⚠️ TURVAVERSIO
-     Tämä on varmistettu, toimiva versio TonttuStudiosta.
-     ÄLÄ MUOKKAA tätä tiedostoa — käytä kopiota kehitykseen.
-     Luotu: Kiian TonttuStudio-pohjasta (v5-siistitty)
-     --------------------------------------------------------- -->
 <html lang="fi">
 <head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>TonttuStudio</title>
 
-<!------------ FONTIT --------->
-<link href="https://fonts.googleapis.com/css2?family=Emilys+Candy&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Emilys+Candy&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
-<!------------ NIMI --------->
-<title>TonttuStudio – Lisää tunnelmaa jouluun ✨</title>
-
-<!-- =========================================================
-     🎨 TYYLIT / CSS
-     --------------------------------------------------------- -->
 <style>
-html, body {
-  margin: 0;
-  padding: 0;
-}
-
-/* --- Allekirjoitus / Credits --- */
-.credits {
-  width: 100%;
-  text-align: center;
-  font-size: 17px;
-  color: #ffe7a5;
-  opacity: 0.95;
-  margin-top: 80px;
-  padding: 0 0 20px 0;
-  font-family: "Fredoka", sans-serif;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.6);
-  box-sizing: border-box;
-  line-height: 1.25;
-}
-
-.credits-name {
-  font-size: 14px;
-  opacity: 0.75;
-  margin-top: 4px;
-}
-
-/* -------------------- Värit ja perusfontit -------------------- */
 :root{
   --red:#8d1b1b;
   --gold:#f6d778;
   --gold-edge:#7f642a;
 }
 
-html,body{height:100%}
-
-body{
+html,body{
   margin:0;
+  padding:0;
+  height:100%;
   background:var(--red);
+  font-family:'Fredoka',sans-serif;
   color:#fff;
-  font-family: 'Fredoka', sans-serif;
   -webkit-font-smoothing:antialiased;
-  text-rendering:optimizeLegibility;
 }
 
-/* -------------------- Sivun runko / keskuskolumni -------------------- */
-.wrap {
+.wrap{
   max-width:720px;
   margin:0 auto;
   padding:16px;
-  position: relative;   /* sallii stickyn toimia sisällä */
 }
 
-/* -------------------- Sticky-otsikko -------------------- */
-h1 {
-  position: sticky;
-  top: 0;
-  z-index: 200;
+/* -------------------- Otsikko -------------------- */
+h1{
+  position:sticky;
+  top:0;
+  margin:0;
+  margin-bottom:6px;
+  padding:6px 0 4px 0;
+  background:var(--red);
+  z-index:400;
 
-  margin: 0;
-  margin-bottom: -2px;
+  display:flex;
+  justify-content:center;
+  align-items:flex-end;
+  gap:8px;
 
-  padding: 6px 0 12px;
-
-  background: var(--red);
-
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  gap: 8px;
-
-  font-size: 42px;
-  line-height: 1.05;
-  color: #ffd700;
-  text-shadow: 0 2px 0 rgba(0,0,0,.25),
-               0 0 16px rgba(243,209,119,.35);
-  font-weight: 700;
-  font-family: 'Emilys Candy', cursive;
-  letter-spacing: .3px;
+  font-family:'Emilys Candy';
+  font-size:46px;
+  color:#ffd85a;
+  letter-spacing:0.5px;
+  text-shadow:0 2px 0 #0005, 0 0 14px rgba(243,209,119,.35);
 }
 
-/* 🧝‍♂️ tontun säätö */
-.title-tonttu {
-  height: 60px;
-  display: block;
-  align-self: flex-end;
-  margin-bottom: -1px;
-  margin-right: 2px;
+.title-tonttu{
+  height:70px;
+  margin-bottom:-2px;
 }
 
-/* -------------------- Työkalupalkki ja napit -------------------- */
-/* korjattu: ..toolbar -> .toolbar */
+/* -------------------- Toolbar -------------------- */
 .toolbar{
-  position: sticky;
-  top: 68px;              /* otsikon alapuolella */
-  z-index: 300;
-  background: var(--red);
-  box-shadow: none !important;
+  position:sticky;
+  top:68px;
+  z-index:390;
 
   display:flex;
   gap:10px;
   justify-content:center;
   align-items:center;
-  margin-bottom:12px;
-  flex-wrap:nowrap;
-  overflow-x:auto;
-  padding:2px;
+
+  padding:6px 4px;
+  background:var(--red);
 }
 
-button,
-label.button{
-  white-space:nowrap;
+button,label.button{
   background:linear-gradient(#ffe7a5,#e5c66d);
   color:#2b1c00;
-  border:2px solid var(--gold-edge);
   padding:10px 18px;
-  font-weight:500;
-  border-radius:24px;
+  border-radius:26px;
+  border:2px solid var(--gold-edge);
   font-size:16px;
-  box-shadow:0 4px 0 #6e5624, 0 8px 18px rgba(0,0,0,.25);
+  font-weight:600;
+  box-shadow:0 4px 0 #6e5624,0 8px 16px #0004;
+  white-space:nowrap;
   cursor:pointer;
-  touch-action:manipulation;
-  font-family: 'Fredoka', sans-serif;
+  font-family:'Fredoka',sans-serif;
 }
 
 input[type=file]{display:none}
 
-/* -------------------- Esikatselualue / Canvas-kehys -------------------- */
-/* top arvo nostettu, ettei toolbar tule päälle */
+/* -------------------- Esikatselu -------------------- */
 .preview{
-  width: calc(100% + 32px);
-  max-width: none;
-  margin: 0 -16px 18px;
+  position:sticky;
+  top:132px;
+  z-index:200;
 
-  aspect-ratio: 1/1;
-  background: #121212;
-  border-radius: 16px;
-  border: 3px solid var(--gold);
-  overflow: hidden;
+  margin:0 -16px 12px;
+  width:calc(100% + 32px);
+  aspect-ratio:1/1;
+  border-radius:20px;
+  border:3px solid var(--gold);
+  background:#111;
+  overflow:hidden;
 
-  position: sticky;
-  top: 140px;   /* riittävä väli otsikon+toolbarin alle */
-  z-index: 50;
-
-  touch-action: none;
-
-  box-shadow: 0 18px 40px rgba(0,0,0,0.7);
-  transform: scale(0.95);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow:0 10px 40px #0007;
+  transform:scale(0.97);
+  transition:0.25s;
 }
 
-/* 📌 Ohjeteksti esikatselun keskelle */
-.preview-hint {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: #f6d778;
-  font-size: 18px;
-  font-family: 'Fredoka', sans-serif;
-  opacity: 0.85;
-  pointer-events: none;
-  text-align: center;
-  padding: 4px 8px;
+.preview-hint{
+  position:absolute;
+  left:50%; top:50%;
+  transform:translate(-50%,-50%);
+  color:#f6d778;
+  font-size:19px;
+  opacity:0.9;
+  text-align:center;
+  pointer-events:none;
 }
 
 canvas{
-  width: 100%;
-  height: 100%;
-  display: block;
-  background: #121212;
+  width:100%;
+  height:100%;
+  display:block;
+  touch-action:none;
 }
 
-/* -------------------- Pieni ohjeteksti -------------------- */
-.note{
-  text-align:left;
-  color:#ffe7a5;
-  font-size:13px;
-  margin:8px 0 12px;
-  line-height:1.35;
+/* -------------------- Thumbnails -------------------- */
+
+.thumb-title{
+  grid-column:1/-1;
+  color:#ffd;
+  opacity:0.9;
+  font-size:18px;
+  margin:10px 0 4px;
+  padding-left:6px;
 }
 
-/* -------------------- Pikkukuvien ruudukko (5x5) -------------------- */
 .thumbs{
   display:grid;
   grid-template-columns:repeat(5,1fr);
   gap:10px;
-  padding:4px 2px 2px;
-  margin-bottom:6px;
+  margin-top:6px;
 }
 
 .thumb{
+  background:#0004;
   border-radius:14px;
+  box-shadow:0 0 0 2px rgba(243,209,119,.35) inset, 0 4px 10px #0005;
   padding:6px;
-  background:rgba(0,0,0,.55);
-  box-shadow:0 0 0 2px rgba(243,209,119,.30) inset, 0 6px 16px rgba(0,0,0,.35);
+  aspect-ratio:1/1;
   display:flex;
   align-items:center;
   justify-content:center;
-  aspect-ratio:1/1;
-  overflow:hidden;
 }
 
 .thumb img{
   max-width:100%;
   max-height:100%;
   display:block;
-  cursor:pointer;
-  user-select:none;
   -webkit-user-drag:none;
+  user-select:none;
+  cursor:pointer;
 }
 
-/* 📌 Kirjaston otsikot – vasemmalle, omalle rivilleen */
-.thumb-title {
-  font-family: 'Fredoka', sans-serif;
-  font-size: 17px;
-  font-weight: 500;
-  color: #f6d778;
-  text-align: left;
-  padding-left: 4px;
-  margin: 10px 0 4px;
-  opacity: 0.92;
-  letter-spacing: 0.4px;
-  grid-column: 1 / -1;   /* vie koko rivin leveydeltä */
-}
-
-/* -------------------- Poistoruksi (x), näkyy aktiivisessa -------------------- */
+/* -------------------- Delete button -------------------- */
 .remove-btn{
   position:absolute;
-  color:#fff;
+  font-size:26px;
   font-weight:900;
-  font-size:22px;
-  line-height:1;
-  text-shadow: 0 1px 2px rgba(0,0,0,.7), 0 0 6px rgba(0,0,0,.5);
-  user-select:none;
-  z-index:5;
+  color:#fff;
   pointer-events:auto;
-  transform:translate(-50%,-50%);
+  text-shadow:0 1px 4px #000c;
+  display:none;
+  z-index:20;
 }
 
-/* =========================================================
-     🖼️ ESIKATSELUN TAUSTAKUVA / SCROLL-MOODI
-   ========================================================= */
-
-/* Tämä sallii skrollauksen vain silloin kun kuvaa ei ole */
-.preview.scroll-mode {
-  touch-action: pan-y;
+/* -------------------- Footer -------------------- */
+footer{
+  text-align:center;
+  color:#ffd;
+  opacity:0.95;
+  margin-top:40px;
+  padding-bottom:40px;
+  font-size:18px;
 }
 </style>
 
-<!-- =========================================================
-     📦 KOLMANNEN OSAPUOLEN KIRJASTO (HEIC → PNG muunnos)
-     --------------------------------------------------------- -->
 <script src="https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js"></script>
 </head>
 
 <body>
 <div class="wrap">
 
-<!-- =====================================================
-     🏷️ OTSIKKO – TONTTU VASEMMALLE
-     ----------------------------------------------------- -->
 <h1>
-  <img 
-    src="https://raw.githubusercontent.com/tonttustudio/tonttustudio/main/Otsikontonttu1.png"
-    class="title-tonttu"
-    alt="Tonttu"
-  />
+  <img src="https://raw.githubusercontent.com/tonttustudio/tonttustudio/main/Otsikontonttu1.png"
+       class="title-tonttu" alt="Tonttu">
   TonttuStudio
 </h1>
 
-<!-- =====================================================
-     🧭 TYÖKALUPALKIN PAINIKKEET
-     ----------------------------------------------------- -->
+<!-- Toolbar -->
 <div class="toolbar">
-  <label for="file" class="button">Avaa kuva</label>
-  <input id="file" type="file" accept="image/*,image/heic,image/heif,image/webp"/>
+  <label class="button" for="file">Avaa kuva</label>
+  <input id="file" type="file" accept="image/*,image/heic,image/heif,image/webp" />
   <button id="save">Tallenna</button>
   <button id="clear">Tyhjennä</button>
 </div>
 
-<!-- =====================================================
-     🖼️ ESIKATSELUALUE / CANVAS
-     ----------------------------------------------------- -->
+<!-- Preview -->
 <div class="preview" id="preview">
-  <canvas id="c" width="1200" height="1200" aria-label="Esikatselu"></canvas>
-  <div class="preview-hint">✨ Avaa kuva ja sovita se ruutuun</div>
+  <canvas id="c" width="1200" height="1200"></canvas>
+  <div class="preview-hint">✨ Avaa kuva ja sovita se ruutuun ✨</div>
 </div>
 
-<!-- =====================================================
-     📋 OHJE / NOTE
-     ----------------------------------------------------- -->
-<div class="note">
-  ✨ Lisää koristeita ja muokkaa kahdella sormella.
+<!-- THUMBNAILS -->
+<div id="thumbs" class="thumbs">
+
+<div class="thumb-title">Tekstit</div>
+<div class="thumb"><img src="koristeet/jouluteksti.png"></div>
+<div class="thumb"><img src="koristeet/pikkujoulu.png"></div>
+<div class="thumb"><img src="koristeet/Teksti.png"></div>
+<div class="thumb"><img src="koristeet/tekstinauha-(1)-(1).png"></div>
+<div class="thumb"><img src="koristeet/621005e7-5c3c-4c82-b4cd-7a51d7eb2346.png"></div>
+
+<div class="thumb-title">Kehykset</div>
+<div class="thumb"><img src="koristeet/candykehys.png"></div>
+<div class="thumb"><img src="koristeet/kehys-(3).png"></div>
+<div class="thumb"><img src="koristeet/kehys-(1).png"></div>
+<div class="thumb"><img src="koristeet/havukehys-(1).png"></div>
+<div class="thumb"><img src="koristeet/lahjat-(2).png"></div>
+
 </div>
 
-<!-- =====================================================
-     💻 JAVASCRIPT: TOIMINNALLISUUS
-     ----------------------------------------------------- -->
+<footer>🎄 Tonttuilun iloa ja joulumieltä! ✨</footer>
+
+</div>
+
 <script>
-  // bgBitmap pitää olla globaalisti näkyvissä myös updateScrollMode-funktiolle
-  let bgBitmap = null;
+let bg=null;
+let bgImg=null;
+let stickers=[];
+let active=-1;
 
-(function(){
-  'use strict';
+const canvas=document.getElementById("c");
+const ctx=canvas.getContext("2d",{alpha:false});
+const preview=document.getElementById("preview");
+const hint=document.querySelector(".preview-hint");
+const del=document.createElement("div");
+del.className="remove-btn";
+del.textContent="×";
+preview.appendChild(del);
 
-  /* -------------------- Asetukset ja vakiot -------------------- */
-  const MAX_LONG_EDGE = 3000;
-  const BG_MIN = 0.2, BG_MAX = 6.0;
-  const STICKER_MIN = 0.4, STICKER_MAX = 10.0;
-  const BASE_STICKER = 300;
+function draw(){
+  ctx.fillStyle="#111";
+  ctx.fillRect(0,0,1200,1200);
 
-  /* -------------------- DOM-viittaukset -------------------- */
-  const file = document.getElementById('file');
-  const save = document.getElementById('save');
-  const clearBtn = document.getElementById('clear');
-  const canvas = document.getElementById('c');
-  const ctx = canvas.getContext('2d', { alpha:false, desynchronized:true });
-  const preview = document.getElementById('preview');
-  const previewHint = document.querySelector('.preview-hint');
-  clearCanvas(ctx);
-
-  /* 📌 Esikatseluun koskemalla avataan kuva, jos taustaa ei ole vielä asetettu */
-  preview.addEventListener('click', () => {
-    if (!bgBitmap) {
-      file.click();  // sama kuin “Avaa kuva”
-    }
-  });
-
-  /* -------------------- Taustapuskuri (back buffer) -------------------- */
-  const back = document.createElement('canvas');
-  back.width = canvas.width;
-  back.height = canvas.height;
-  const bctx = back.getContext('2d', {alpha:false});
-
-  /* -------------------- Tilamuuttujat -------------------- */
-  let saveCount = 1;
-  bgBitmap = null;
-  let bg = { x:0, y:0, scale:1 };
-  let bgLocked = false;
-
-  let stickers = [];
-  let activeIndex = -1;
-
-  let needsRedraw = true;
-  let pointers = new Map();
-  let draggingBG = false;
-  let stickerGesture = null;
-
-  /* -------------------- Poistonappi (x) -------------------- */
-  const delBtn = document.createElement('div');
-  delBtn.className = 'remove-btn';
-  delBtn.textContent = 'x';
-  delBtn.style.display = 'none';
-  preview.appendChild(delBtn);
-
-  delBtn.addEventListener('click', ()=>{
-    if(activeIndex>=0){
-      stickers.splice(activeIndex,1);
-      activeIndex = stickers.length-1;
-      if(stickers.length===0) bgLocked=false;
-      needsRedraw=true;
-      updateDeleteButtonPosition();
-    }
-  });
-
-  /* -------------------- Piirtosilmukka -------------------- */
-  requestAnimationFrame(function loop(){
-    if(needsRedraw){
-      draw();
-      needsRedraw=false;
-    }
-    requestAnimationFrame(loop);
-  });
-
-  /* -------------------- Piirron apufunktiot -------------------- */
-  function clearCanvas(target){
-    const t = target||ctx;
-    t.fillStyle = '#121212';          // tummempi tausta myös resetissä
-    t.fillRect(0,0,canvas.width,canvas.height);
-  }
-
-  function hardResetPointers(){
-    pointers.clear();
-    draggingBG=false;
-    stickerGesture=null;
-    if(bg) bg._pinch=null;
-  }
-
-  function resetAll(){
-    bgBitmap=null;
-    bg={x:0,y:0,scale:1};
-    bgLocked=false;
-    stickers=[];
-    activeIndex=-1;
-    saveCount=1;
-    clearCanvas(ctx);
-    clearCanvas(bctx);
-    hardResetPointers();
-    needsRedraw=true;
-    delBtn.style.display='none';
-    if (previewHint) previewHint.style.display = 'block';
-    updateScrollMode(); // kun taustakuva poistuu, sallitaan skrollaus jälleen
-  }
-
-  /* -------------------- KUVAN DEKoodaus ja skaalaus -------------------- */
-  async function decodeSmart(f){
-    if('createImageBitmap' in window){
-      try{
-        const bmp = await createImageBitmap(f,{imageOrientation:'from-image',premultiplyAlpha:'premultiply'});
-        return bmp;
-      }catch(_){}
-    }
-    const url = URL.createObjectURL(f);
-    return await new Promise((res,rej)=>{
-      const img=new Image();
-      img.onload=()=>{URL.revokeObjectURL(url);res(img)};
-      img.onerror=rej;
-      img.src=url;
-    });
-  }
-
-  function downscaleToMaxEdge(bitmap){
-    const iw=bitmap.width, ih=bitmap.height;
-    const k = Math.min(MAX_LONG_EDGE/Math.max(iw,ih),1);
-    const ow=Math.round(iw*k), oh=Math.round(ih*k);
-    const off=document.createElement('canvas');
-    off.width=ow;
-    off.height=oh;
-    const g=off.getContext('2d');
-    g.imageSmoothingEnabled=true;
-    g.imageSmoothingQuality='high';
-    g.drawImage(bitmap,0,0,ow,oh);
-    return off;
-  }
-
-  function fitContain(){
-    const cw=canvas.width, ch=canvas.height, iw=bgBitmap.width, ih=bgBitmap.height;
-    const s=Math.min(cw/iw, ch/ih);
-    bg.scale=s;
-    bg.x=(cw-iw*s)/2;
-    bg.y=(ch-ih*s)/2;
-  }
-
-  function clampBgScale(){
-    const cw=canvas.width, ch=canvas.height;
-    const iw=bgBitmap?.width||cw, ih=bgBitmap?.height||ch;
-    const contain=Math.min(cw/iw, ch/ih);
-    bg.scale=Math.max(contain*BG_MIN, Math.min(BG_MAX, bg.scale));
-  }
-
-  /* -------------------- Varsinainen renderöinti -------------------- */
-  function renderTo(targetCtx){
-    targetCtx.fillStyle='#121212';           // tummempi tausta myös tallennuksessa
-    targetCtx.fillRect(0,0,canvas.width,canvas.height);
-
-    if(bgBitmap){
-      targetCtx.save();
-      targetCtx.imageSmoothingEnabled=true;
-      targetCtx.imageSmoothingQuality='high';
-      targetCtx.translate(bg.x,bg.y);
-      targetCtx.scale(bg.scale,bg.scale);
-      targetCtx.drawImage(bgBitmap,0,0);
-      targetCtx.restore();
-    }
-
-    for(const st of stickers){
-      targetCtx.save();
-      targetCtx.translate(st.x, st.y);
-      targetCtx.rotate(st.rot);
-      targetCtx.scale(st.scale, st.scale);
-      const img=st.bitmap;
-      const w=img.width, h=img.height;
-      const scale=Math.min(BASE_STICKER/w, BASE_STICKER/h);
-      targetCtx.scale(scale, scale);
-      targetCtx.drawImage(img, -w/2, -h/2);
-      targetCtx.restore();
-    }
-  }
-
-  /* -------------------- Koristeen korostuskehys -------------------- */
-  function roundedRectPath(g, x, y, w, h, r){
-    const rr = Math.min(r, Math.abs(w)/2, Math.abs(h)/2);
-    g.beginPath();
-    g.moveTo(x+rr, y);
-    g.lineTo(x+w-rr, y);
-    g.quadraticCurveTo(x+w, y, x+w, y+rr);
-    g.lineTo(x+w, y+h-rr);
-    g.quadraticCurveTo(x+w, y+h, x+w-rr, y+h);
-    g.lineTo(x+rr, y+h);
-    g.quadraticCurveTo(x, y+h, x, y+h-rr);
-    g.lineTo(x, y+rr);
-    g.quadraticCurveTo(x, y, x+rr, y);
-    g.closePath();
-  }
-
-  function drawOutlineForActive(){
-    if(activeIndex<0 || !stickers[activeIndex]) return;
-    const st = stickers[activeIndex];
-
+  if(bgImg){
     ctx.save();
-    ctx.translate(st.x, st.y);
-    ctx.rotate(st.rot);
-    const img = st.bitmap, w=img.width, h=img.height;
-    const inner = Math.min(BASE_STICKER/w, BASE_STICKER/h) * st.scale;
-
-    ctx.scale(inner, inner);
-    ctx.lineWidth = 3 / inner;
-    ctx.strokeStyle = '#f6d778';
-    ctx.shadowColor='rgba(246,215,120,.35)';
-    ctx.shadowBlur=14;
-    ctx.lineJoin='round';
-
-    roundedRectPath(ctx, -w/2, -h/2, w, h, Math.min(w,h)*0.12);
-    ctx.stroke();
+    ctx.translate(bg.x,bg.y);
+    ctx.scale(bg.s,bg.s);
+    ctx.drawImage(bgImg,0,0);
     ctx.restore();
-
-    updateDeleteButtonPosition();
   }
 
-  /* -------------------- Yhdistelmäpiirto (back → näkyvä) -------------------- */
-  function draw(){
-    renderTo(bctx);
-    ctx.drawImage(back,0,0);
-    drawOutlineForActive();
-    needsRedraw=false;
+  for(let i=0;i<stickers.length;i++){
+    const s=stickers[i];
+    ctx.save();
+    ctx.translate(s.x,s.y);
+    ctx.rotate(s.r);
+    ctx.scale(s.s,s.s);
+    ctx.drawImage(s.img,-s.w/2,-s.h/2);
+    ctx.restore();
   }
 
-  /* -------------------- Poistonapin sijainnin päivitys -------------------- */
-  function updateDeleteButtonPosition(){
-    if(activeIndex<0 || !stickers[activeIndex]){
-      delBtn.style.display='none';
-      return;
-    }
-    delBtn.style.display='block';
-    const st = stickers[activeIndex];
-    const rect = canvas.getBoundingClientRect();
-    const scaleX = rect.width / canvas.width;
-    const scaleY = rect.height / canvas.height;
-    const img = st.bitmap, w=img.width, h=img.height;
-    const innerScale = Math.min(BASE_STICKER/w, BASE_STICKER/h) * st.scale;
-    const px = (st.x + (w/2)*innerScale) * scaleX + rect.left;
-    const py = (st.y - (h/2)*innerScale) * scaleY + rect.top;
-    const pr = preview.getBoundingClientRect();
-    delBtn.style.left = (px - pr.left + 6) + 'px';
-    delBtn.style.top  = (py - pr.top  - 6) + 'px';
-  }
-
-  /* -------------------- Tiedoston avaus + LATAAN… -------------------- */
-  file.addEventListener('change', async (e)=>{
-    const f = e.target.files && e.target.files[0];
-    if(!f) return;
-
-    const label = document.querySelector('label[for="file"]');
-    const originalText = label.textContent;
-    label.textContent = "LATAAN...";
-    label.style.opacity = "0.6";
-    label.style.pointerEvents = "none";
-
-    try{
-      const isHeic=(/\.hei[cf]$/i.test(f.name||'')||/heic|heif/i.test(f.type||''));
-      if(isHeic && window.heic2any){
-        const pngBlob=await window.heic2any({blob:f,toType:'image/png'});
-        const url=URL.createObjectURL(pngBlob);
-        const img=await new Promise((res,rej)=>{
-          const im=new Image();
-          im.onload=()=>res(im);
-          im.onerror=rej;
-          im.src=url;
-        });
-        URL.revokeObjectURL(url);
-        const off=document.createElement('canvas');
-        off.width=img.naturalWidth;
-        off.height=img.naturalHeight;
-        const g=off.getContext('2d');
-        g.imageSmoothingEnabled=true;
-        g.imageSmoothingQuality='high';
-        g.drawImage(img,0,0);
-        bgBitmap=downscaleToMaxEdge(off);
-      }else{
-        const bmp=await decodeSmart(f);
-        bgBitmap=downscaleToMaxEdge(bmp);
-        if(bmp && bmp.close) try{ bmp.close(); }catch(_){}
-      }
-
-      fitContain();
-      clampBgScale();
-      needsRedraw=true;
-
-      if (previewHint) previewHint.style.display = 'none';
-
-      // kun taustakuva on asetettu, estetään skrollaus esikatselualueella
-      updateScrollMode();
-
-    }catch{
-      alert('Kuvan avaaminen epäonnistui.');
-    }
-    finally{
-      e.target.value='';
-      label.textContent=originalText;
-      label.style.opacity='1';
-      label.style.pointerEvents='auto';
-    }
-  });
-
-  /* -------------------- Tallennus PNG:ksi -------------------- */
-  function pad3(n){ return String(n).padStart(3,'0'); }
-
-  save.addEventListener('click', ()=>{
-    const off=document.createElement('canvas');
-    off.width=canvas.width;
-    off.height=canvas.height;
-    const g=off.getContext('2d',{alpha:false});
-    renderTo(g);
-    const filename=`Joulugeneraattori_${pad3(saveCount)}.png`;
-    off.toBlob((blob)=>{
-      const a=document.createElement('a');
-      a.href=URL.createObjectURL(blob);
-      a.download=filename;
-      document.body.appendChild(a);
-      a.click();
-      setTimeout(()=>{
-        URL.revokeObjectURL(a.href);
-        a.remove();
-      },1000);
-      saveCount++;
-    },'image/png',0.95);
-  });
-
-  /* -------------------- Tyhjennys / Reset -------------------- */
-  clearBtn.addEventListener('click', resetAll);
-
-  /* -------------------- Pikkukuvat → Koristeiksi -------------------- */
-  window.addEventListener('load', ()=>{
-    const thumbs = document.getElementById('thumbs');
-    if(!thumbs) return;
-
-    async function addStickerFromUrl(url){
-      const img=new Image();
-      img.crossOrigin='anonymous';
-      await new Promise((r,j)=>{
-        img.onload=r;
-        img.onerror=j;
-        img.src=url;
-      });
-      const off=document.createElement('canvas');
-      off.width=img.naturalWidth;
-      off.height=img.naturalHeight;
-      const g=off.getContext('2d');
-      g.imageSmoothingEnabled=true;
-      g.imageSmoothingQuality='high';
-      g.drawImage(img,0,0);
-      stickers.push({bitmap:off,x:canvas.width/2,y:canvas.height/2,scale:1,rot:0});
-      activeIndex=stickers.length-1;
-      if(stickers.length>0) bgLocked=true;
-      needsRedraw=true;
-      updateDeleteButtonPosition();
-    }
-
-    thumbs.addEventListener('click', async (e)=>{
-      if(e.target.tagName!=='IMG' || !e.target.src) return;
-      await addStickerFromUrl(e.target.src);
-    });
-  });
-
-  /* -------------------- Eleet: drag/zoom/rotaatio -------------------- */
-  function canvasCoords(e){
-    const r=canvas.getBoundingClientRect();
-    return {
-      x:(e.clientX-r.left)*(canvas.width/r.width),
-      y:(e.clientY-r.top)*(canvas.height/r.height)
-    };
-  }
-
-  canvas.addEventListener('pointerdown', (e)=>{
-    canvas.setPointerCapture(e.pointerId);
-    pointers.set(e.pointerId,{x:e.clientX, y:e.clientY});
-    const p=canvasCoords(e);
-
-    let newActive = -1;
-    for(let i=stickers.length-1;i>=0;i--){
-      const st=stickers[i];
-      const box=140*st.scale;
-      if(Math.abs(p.x-st.x)<box && Math.abs(p.y-st.y)<box){
-        newActive=i;
-        break;
-      }
-    }
-    activeIndex = newActive;
-    updateDeleteButtonPosition();
-
-    if(activeIndex===-1 && !bgLocked){
-      draggingBG=true;
-    } else {
-      stickerGesture=null;
-    }
-  });
-
-  canvas.addEventListener('pointermove', (e)=>{
-    if(!pointers.has(e.pointerId)) return;
-    const ent=pointers.get(e.pointerId);
-    const prevX = ent.prevX ?? ent.x ?? e.clientX;
-    const prevY = ent.prevY ?? ent.y ?? e.clientY;
-    ent.x=e.clientX;
-    ent.y=e.clientY;
-    ent.prevX=e.clientX;
-    ent.prevY=e.clientY;
-    pointers.set(e.pointerId,ent);
-
-    const r=canvas.getBoundingClientRect();
-    const sx=canvas.width/r.width, sy=canvas.height/r.height;
-    const pts=Array.from(pointers.values());
-
-    if(activeIndex!==-1){
-      const st=stickers[activeIndex];
-      if(pts.length===1){
-        st.x += (e.clientX-prevX)*sx;
-        st.y += (e.clientY-prevY)*sy;
-      }else if(pts.length>=2){
-        const [p1,p2]=pts;
-        const dx=p2.x-p1.x, dy=p2.y-p1.y;
-        const dist=Math.hypot(dx,dy);
-        const ang=Math.atan2(dy,dx);
-        if(!stickerGesture) stickerGesture={dist, ang, scale0:st.scale, rot0:st.rot};
-        st.scale = Math.max(STICKER_MIN, Math.min(STICKER_MAX, stickerGesture.scale0*(dist/stickerGesture.dist)));
-        st.rot = stickerGesture.rot0 + (ang - stickerGesture.ang);
-      }
-      needsRedraw=true;
-      updateDeleteButtonPosition();
-      return;
-    }
-
-    if(!bgLocked){
-      if(pts.length===1 && draggingBG){
-        bg.x += (e.clientX-prevX)*sx;
-        bg.y += (e.clientY-prevY)*sy;
-        needsRedraw=true;
-      }else if(pts.length===2){
-        const [p1,p2]=pts;
-        const dx=p2.x-p1.x, dy=p2.y-p1.y;
-        const dist=Math.hypot(dx,dy);
-        if(!bg._pinch) bg._pinch={dist, scale:bg.scale, x:bg.x, y:bg.y};
-        let factor = bg._pinch.scale * (dist/bg._pinch.dist);
-        const contain=Math.min(canvas.width/(bgBitmap?.width||canvas.width), canvas.height/(bgBitmap?.height||canvas.height));
-        factor=Math.max(contain*BG_MIN, Math.min(BG_MAX, factor));
-        const cx=((p1.x+p2.x)/2 - r.left)*(canvas.width/r.width);
-        const cy=((p1.y+p2.y)/2 - r.top)*(canvas.height/r.height);
-        bg.x = cx - (cx - bg._pinch.x) * (factor/bg._pinch.scale);
-        bg.y = cy - (cy - bg._pinch.y) * (factor/bg._pinch.scale);
-        bg.scale=factor;
-        needsRedraw=true;
-      }
-    }
-  });
-
-  function endPointer(e){
-    pointers.delete(e.pointerId);
-    if(pointers.size===0){
-      draggingBG=false;
-      if(bg) bg._pinch=null;
-      stickerGesture=null;
-    }
-  }
-
-  canvas.addEventListener('pointerup', endPointer);
-  canvas.addEventListener('pointercancel', endPointer);
-  canvas.addEventListener('pointerleave', endPointer);
-
-  canvas.addEventListener('wheel', (e)=>{
-    if(bgLocked) return;
-    e.preventDefault();
-    const r=canvas.getBoundingClientRect();
-    const scale=canvas.width/r.width;
-    const cx=(e.clientX-r.left)*scale, cy=(e.clientY-r.top)*scale;
-    let next = Math.exp(-e.deltaY*0.0015)*bg.scale;
-    const contain=Math.min(canvas.width/(bgBitmap?.width||canvas.width), canvas.height/(bgBitmap?.height||canvas.height));
-    next=Math.max(contain*BG_MIN, Math.min(BG_MAX,next));
-    bg.x = cx - (cx - bg.x) * (next/bg.scale);
-    bg.y = cy - (cy - bg.y) * (next/bg.scale);
-    bg.scale=next;
-    needsRedraw=true;
-  }, {passive:false});
-
-})();  // IIFE loppu
-</script>
-
-<script>
-function updateScrollMode() {
-  const preview = document.querySelector('.preview');
-  if (!preview) return;
-
-  // jos bgBitmap on null/undefined → sallitaan skrollaus
-  if (!bgBitmap) {
-    preview.classList.add("scroll-mode");
-  } else {
-    preview.classList.remove("scroll-mode");
+  if(active>=0){
+    const s=stickers[active];
+    ctx.save();
+    ctx.translate(s.x,s.y);
+    ctx.rotate(s.r);
+    ctx.scale(s.s,s.s);
+    ctx.lineWidth=6/s.s;
+    ctx.strokeStyle="#f6d778";
+    ctx.strokeRect(-s.w/2,-s.h/2,s.w,s.h);
+    ctx.restore();
   }
 }
 
-// ajetaan kerran sivun latauksessa (alussa ei taustakuvaa)
-updateScrollMode();
+function pos(e){
+  const r=canvas.getBoundingClientRect();
+  return {
+    x:(e.clientX-r.left)*(1200/r.width),
+    y:(e.clientY-r.top)*(1200/r.height)
+  };
+}
+
+let pointers=new Map();
+
+/* Pointer down */
+canvas.addEventListener("pointerdown",e=>{
+  canvas.setPointerCapture(e.pointerId);
+  pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});
+  const p=pos(e);
+
+  active=-1;
+  for(let i=stickers.length-1;i>=0;i--){
+    const s=stickers[i];
+    if(Math.abs(p.x-s.x)<200 && Math.abs(p.y-s.y)<200){ active=i; break; }
+  }
+
+  updateDelete();
+});
+
+/* Pointer move */
+canvas.addEventListener("pointermove",e=>{
+  if(!pointers.has(e.pointerId)) return;
+
+  const cur=pointers.get(e.pointerId);
+  const dx=e.clientX-cur.x;
+  const dy=e.clientY-cur.y;
+  cur.x=e.clientX; cur.y=e.clientY;
+
+  const scale=1200/canvas.getBoundingClientRect().width;
+
+  if(active>=0){
+    const s=stickers[active];
+    s.x+=dx*scale;
+    s.y+=dy*scale;
+    draw();
+    updateDelete();
+    return;
+  }
+
+  if(bg){
+    bg.x+=dx*scale;
+    bg.y+=dy*scale;
+    draw();
+  }
+});
+
+/* Pointer up */
+canvas.addEventListener("pointerup",e=>{
+  pointers.delete(e.pointerId);
+});
+
+/* Add sticker */
+document.getElementById("thumbs").addEventListener("click",async e=>{
+  if(e.target.tagName!=="IMG")return;
+
+  const img=new Image();
+  img.src=e.target.src;
+  await img.decode();
+
+  stickers.push({
+    img,
+    w:img.width,
+    h:img.height,
+    x:600, y:600,
+    s:0.4,
+    r:0
+  });
+
+  active=stickers.length-1;
+  draw();
+  updateDelete();
+});
+
+/* Update delete button position */
+function updateDelete(){
+  if(active<0){ del.style.display="none"; return; }
+
+  del.style.display="block";
+  const s=stickers[active];
+
+  const r=canvas.getBoundingClientRect();
+  const px=(s.x+ s.w*s.s/2)*(r.width/1200)+r.left;
+  const py=(s.y- s.h*s.s/2)*(r.height/1200)+r.top;
+
+  const pr=preview.getBoundingClientRect();
+  del.style.left=(px-pr.left)+"px";
+  del.style.top=(py-pr.top)+"px";
+}
+
+/* Delete sticker */
+del.addEventListener("click",()=>{
+  if(active>=0){
+    stickers.splice(active,1);
+    active=-1;
+    draw();
+    updateDelete();
+  }
+});
+
+/* Load image */
+document.getElementById("file").addEventListener("change",async e=>{
+  const f=e.target.files[0];
+  if(!f)return;
+
+  const blob=f;
+  let img=null;
+
+  if(/heic|heif/i.test(f.type)){
+    const converted=await heic2any({blob:f,toType:"image/png"});
+    img=new Image();
+    img.src=URL.createObjectURL(converted);
+  }else{
+    img=new Image();
+    img.src=URL.createObjectURL(blob);
+  }
+
+  await img.decode();
+  bgImg=img;
+  bg={
+    x:(1200-img.width)/2,
+    y:(1200-img.height)/2,
+    s:1200/Math.max(img.width,img.height)
+  };
+
+  hint.style.display="none";
+  draw();
+});
+
+/* Save */
+document.getElementById("save").addEventListener("click",()=>{
+  const a=document.createElement("a");
+  a.href=canvas.toDataURL("image/png",1);
+  a.download="TonttuStudio.png";
+  a.click();
+});
+
+/* Clear */
+document.getElementById("clear").addEventListener("click",()=>{
+  stickers=[];
+  active=-1;
+  bgImg=null;
+  hint.style.display="block";
+  draw();
+});
 </script>
-
-  <!-- =====================================================
-       📦 KIRJASTO (PIKKUKUVAT)
-       ----------------------------------------------------- -->
-<div id="thumbs" class="thumbs">
-
-<!-- 🎄 Otsikko 1 -->
-<div class="thumb-title">Tekstit</div>
-
-<div class="thumb"><img src="koristeet/jouluteksti.png" alt="Koriste" /></div>
-<div class="thumb"><img src="koristeet/621005e7-5c3c-4c82-b4cd-7a51d7eb2346.png" alt="Koriste" /></div>
-<div class="thumb"><img src="koristeet/tekstinauha-(1)-(1).png" alt="tekstinauha" /></div>
-<div class="thumb"><img src="koristeet/Teksti.png" alt="Koriste" /></div>
-<div class="thumb"><img src="koristeet/pikkujoulu.png" alt="#pikkujoulu" /></div>
-
-<!-- 🎄 Otsikko -->
-<div class="thumb-title">Tonttulakit</div>
-
-<div class="thumb"><img src="koristeet/510307522834342588a48e1f61e365b6.png" alt="Koriste" /></div>
-<div class="thumb"><img src="koristeet/e15aff05b343953069b448175042c3bd.png" alt="Koriste" /></div>
-<div class="thumb"><img src="koristeet/Whats-App-Image-2025-11-13-at-07-04-02-3.png" alt="Koriste" /></div>
-<div class="thumb"><img src="koristeet/hat-1.png" alt="Koriste" /></div>
-<div class="thumb"><img src="koristeet/rusetti-(1)-(1).png" alt="rusetti" /></div>
-
-<!-- 🎄 Otsikko 3 -->
-<div class="thumb-title">Päähärpäkkeet</div>
-
-<div class="thumb"><img src="koristeet/karkkisarvet.png" alt="Koriste" /></div>
-<div class="thumb"><img src="koristeet/Whats-App-Image-2025-11-13-at-07-04-03-15.png" alt="Koriste" /></div>
-<div class="thumb"><img src="koristeet/Chat-GPT-Image-12-marrask-2025-klo-18-47-55.png" alt="Koriste" /></div>
-<div class="thumb"><img src="koristeet/lasit.png" alt="Lasit" /></div>
-<div class="thumb"><img src="koristeet/Sarvetkoristeilla.png" alt="Koriste sarvet" /></div>
-
-<!-- 🎄 Otsikko -->
-<div class="thumb-title">Herkut</div>
-
-<div class="thumb"><img src="koristeet/7a5826d6278c6a08de65a8a8a046c55c.png" alt="Koriste" /></div>
-<div class="thumb"><img src="koristeet/55d7214cfcfbbf1215d070571faa6dd1.png" alt="Koriste" /></div>
-<div class="thumb"><img src="koristeet/muki-(1).png" alt="Koriste muki" /></div>
-<div class="thumb"><img src="koristeet/lasi-(1).png" alt="Koriste lasi" /></div>
-<div class="thumb"><img src="koristeet/8e7b741404c6a555f7b38e12c6586d58.png" alt="Koriste" /></div>
-
-<!-- 🎄 Otsikko -->
-<div class="thumb-title">Kavereita</div>
-
-<div class="thumb"><img src="koristeet/Poro-(1).png" alt="Koriste poro" /></div>
-<div class="thumb"><img src="koristeet/8425ac82bb01df176c5ce62967e8eeeb.png" alt="Koriste" /></div>
-<div class="thumb"><img src="koristeet/4fb7385e575122c9976601623ce6d95e.png" alt="Koriste" /></div>
-<div class="thumb"><img src="koristeet/tonttu.png" alt="Koriste" /></div>
-<div class="thumb"><img src="koristeet/tonttu-(1).png" alt="Koriste tonttu" /></div>
-
-<!-- 🎄 Otsikko -->
-<div class="thumb-title">Naughty or Nice</div>
-
-<div class="thumb"><img src="koristeet/naughtyleima.png" alt="Koriste" /></div>
-<div class="thumb"><img src="koristeet/naughtyornice.png" alt="Koriste" /></div>
-<div class="thumb"><img src="koristeet/hohoho.png" alt="Koriste" /></div>
-<div class="thumb"><img src="koristeet/lappunen.png" alt="Koriste" /></div>
-<div class="thumb"><img src="koristeet/Kiss-Me.png" alt="Koriste" /></div>
-
-<!-- 🎄 Otsikko -->
-<div class="thumb-title">Koristeet</div>
-
-<div class="thumb"><img src="koristeet/kuusi-(1).png" alt="Koriste kuusi" /></div>
-<div class="thumb"><img src="koristeet/lehva.png" alt="Koriste" /></div>
-<div class="thumb"><img src="koristeet/rusetti1-(1).png" alt="Koriste rusetti" /></div>
-<div class="thumb"><img src="koristeet/tahti-(1).png" alt="#tahti" /></div>
-<div class="thumb"><img src="koristeet/pallot-(1).png" alt="#pikkujoulut" /></div>
-
-<!-- 🎄 Otsikko 2 -->
-<div class="thumb-title">Kehykset</div>
-
-<div class="thumb"><img src="koristeet/kehys-(3).png" alt="Koriste kehys" /></div>
-<div class="thumb"><img src="koristeet/havukehys-(1).png" alt="Koriste havukehys" /></div>
-<div class="thumb"><img src="koristeet/kehys-(1).png" alt="Koriste kehys" /></div>
-<div class="thumb"><img src="koristeet/candykehys.png" alt="Koriste" /></div>
-<div class="thumb"><img src="koristeet/lahjat-(2).png" alt="Koriste lahjat" /></div>
-
-</div> <!-- /#thumbs -->
-
-<!-- =====================================================
-     📘 OHJE (PIKKUKUVAN LISÄYS)
-===================================================== -->
-<footer class="credits">
-  🎄 Tonttuilun iloa ja joulumieltä! ✨
-  <div class="credits-name">– Kiia</div>
-</footer>
-
-</div> <!-- /.wrap -->
 
 </body>
 </html>
